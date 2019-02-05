@@ -1,10 +1,10 @@
 const express = require('express');
-//const bodyParser = require('body-parser');
+
 
 
 const User = require('../model/users')
 const adminRouter = express.Router();
-//adminRouter.use(bodyParser.json());
+
 adminRouter.route('/')
     // .all((req, res, next) => {
     //     res.statusCode = 200;
