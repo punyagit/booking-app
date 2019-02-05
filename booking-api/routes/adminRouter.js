@@ -19,6 +19,10 @@ adminRouter.route('/')
         res.send("data posted")
     })
 
+    .put((req, res, next) => {
+
+    })
+
 
 
 
