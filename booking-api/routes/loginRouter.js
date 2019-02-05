@@ -12,19 +12,21 @@ loginRouter.route('/')
     //     next();
     // })
 
-    .get((req, res, next) => {
-        Login.find()
-            .then(data => { res.send(data) });
-
-    })
 
     .post((req, res, next) => {
-        Login.create(req.body)
-            .then(data => {
-                console.log("user created")
-                res.json(data)
-            })
+        if (req.body.userName === "punya") {
+            Login.find()
+                .then(data => { res.send(data) });
+
+        } else {
+            res.status(400);
+            res.end("You are not authorized ");
+            console.log("No matching data");
+        }
+
+
     })
+
 
 loginRouter.route('/:loginId')
 
