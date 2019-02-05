@@ -6,12 +6,17 @@ const bodyParser = require('body-parser');
 
 const Config = require('./config/config.json');
 const adminRouter = require('./routes/adminRouter');
+const loginRouter = require('./routes/loginRouter');
+
 const port = Config.port || 4000;
 const mongoServer = '127.0.0.1:27017';
 
 
 
-(mongoose.connect(`mongodb://${mongoServer}/booking`, { useNewUrlParser: true }))
+(mongoose.connect(`mongodb://${mongoServer}/booking`, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+}))
     .then(() => {
         console.log("connected");
 
@@ -22,11 +27,12 @@ const mongoServer = '127.0.0.1:27017';
 
 
 
-app.use(morgan('dev'))
+app.use(morgan('dev'));
 app.use(bodyParser.json());
 
 
 
-app.use('/admin', adminRouter)
+app.use('/admin', adminRouter);
+app.use('/login', loginRouter);
 
 app.listen(port, console.log("Starting Server in Port " + port));

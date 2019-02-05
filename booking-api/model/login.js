@@ -5,7 +5,6 @@ const loginSchema = mongoose.Schema({
         type: String,
         required: true,
         unique: true
-
     },
     password: {
         type: String,
@@ -14,6 +13,6 @@ const loginSchema = mongoose.Schema({
 
 });
 
-let Login = mongoose.model('Login', userSchema);
+let Login = mongoose.model('Login', loginSchema);
 
 module.exports = Login;
