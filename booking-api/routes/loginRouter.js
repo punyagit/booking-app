@@ -1,7 +1,4 @@
 const express = require('express');
-
-
-
 const Login = require('../model/Login')
 const loginRouter = express.Router();
 

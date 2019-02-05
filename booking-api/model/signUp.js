@@ -1,3 +1,4 @@
+
 const mongoose = require('mongoose');
 
 const signUpSchema = mongoose.Schema({
@@ -9,7 +10,7 @@ const signUpSchema = mongoose.Schema({
     cardNo: {
         type: String,
         required: true,
-        unique: true,
+        unique: true
     },
     address: {
         type: String,
@@ -23,8 +24,18 @@ const signUpSchema = mongoose.Schema({
     },
     phoneNo: {
         type: String,
-        required: true,
+        required: true
     }
-})
+});
 
-const Residents = mongoose.Model(Resident, signUpSchema)
+let Residents = mongoose.model('Resident', signUpSchema)
+
+module.exports = Residents;
+
+// {
+//     "userName": "punya",
+//     "cardNo":"4056",
+//     "address":"30 eleanor drive glenfield",
+//     "email": "preety@hotmail.com",
+//     "phoneNo": "043225986"
+// }

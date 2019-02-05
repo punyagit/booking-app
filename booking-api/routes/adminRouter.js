@@ -2,7 +2,7 @@ const express = require('express');
 
 
 
-const User = require('../model/users')
+const User = require('../model/user')
 const adminRouter = express.Router();
 
 adminRouter.route('/')

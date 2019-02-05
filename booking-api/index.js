@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 
 const Config = require('./config/config.json');
 const adminRouter = require('./routes/adminRouter');
+const signUpRouter = require('./routes/signUpRouter');
 const loginRouter = require('./routes/loginRouter');
 
 const port = Config.port || 4000;
@@ -34,5 +35,7 @@ app.use(bodyParser.json());
 
 app.use('/admin', adminRouter);
 app.use('/login', loginRouter);
+app.use('/signUp', signUpRouter);
+
 
 app.listen(port, console.log("Starting Server in Port " + port));
