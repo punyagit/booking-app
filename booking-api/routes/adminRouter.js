@@ -1,9 +1,10 @@
 const express = require('express');
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
 
 
+const User = require('../model/users')
 const adminRouter = express.Router();
-
+//adminRouter.use(bodyParser.json());
 adminRouter.route('/')
     // .all((req, res, next) => {
     //     res.statusCode = 200;
@@ -12,14 +13,25 @@ adminRouter.route('/')
     // })
 
     .get((req, res, next) => {
-        res.send("i am sending you the data");
+        User.find()
+            .then(data => { res.send(data) });
+
     })
 
     .post((req, res, next) => {
-        res.send("data posted")
+        User.create(req.body)
+            .then(data => {
+                console.log("user created")
+                res.json(data)
+            })
     })
 
+adminRouter.route('/:userId')
+
     .put((req, res, next) => {
+        User.findByIdAndUpdate(req.params.userId, { $set: req.body })
+            .then(data => { res.json(data) });
+
 
     })
 

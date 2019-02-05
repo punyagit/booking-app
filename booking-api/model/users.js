@@ -1,17 +1,38 @@
 const mongoose = require('mongoose');
 const userSchema = mongoose.Schema({
-    name: { type: String },
+    cardNo: { type: String },
     address: { type: String }
 
 });
 
 let Users = mongoose.model('User', userSchema);
 
-let admin = Users({
-    name: 'Punya',
-    address: '30 eleanor drive glenfield'
-})
+// seeding database -----
 
-//admin.save();
+// Users.create(
+//     {
+//         cardNo: '4596',
+//         address: '30 eleanor drive glenfield'
+//     },
+//     {
+//         cardNo: '4096',
+//         address: '28 eleanor drive glenfield'
+
+//     }
+
+// )
+
+// let admin = Users(
+//     {
+//         cardNo: '4596',
+//         address: '30 eleanor drive glenfield'
+//     },
+//     // {
+//     //     cardNo: '4096',
+//     //     address: '28 eleanor drive glenfield'
+//     // }
+// )
+
+// admin.save();
 
 module.exports = Users;

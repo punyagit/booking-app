@@ -6,7 +6,6 @@ const bodyParser = require('body-parser');
 
 const Config = require('./config/config.json');
 const adminRouter = require('./routes/adminRouter');
-const User = require('./model/users')
 const port = Config.port || 4000;
 const mongoServer = '127.0.0.1:27017';
 
