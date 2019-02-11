@@ -1,4 +1,5 @@
 const express = require('express');
+const bcrypt = require('bcrypt');
 const signUp = require('../model/signUp');
 const User = require('../model/user')
 const signUpRouter = express.Router();
@@ -14,7 +15,15 @@ signUpRouter.route('/')
     })
 
     .post((req, res, next) => {
-        let cardNo = req.body.cardNo
+        let cardNo = req.body.cardNo;
+        let userName = req.body.userName;
+        let password = req.body.password;
+        let address = req.body.address;
+        let email = req.body.email;
+        let phoneNo = req.body.phoneNo
+
+
+
 
         User.findOne({ cardNo: cardNo })
             .then((data) => {
@@ -23,12 +32,19 @@ signUpRouter.route('/')
                     res.send("card is not registered");
                 }
                 else {
-                    signUp.create(req.body)
-                        .then(data => {
-                            console.log("user created");
-                            res.json(data);
-                        })
+                    bcrypt.hash(password, 10).then((hash) => {
 
+                        password = hash;
+
+
+                        signUp.create(
+                            { userName, password, cardNo, address, email, phoneNo } // object destructuring
+                        )
+                            .then(data => {
+                                //console.log("user created");
+                                res.json(data);
+                            })
+                    })
                 }
 
             })
