@@ -1,5 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
+
 const signUp = require('../model/signUp');
 const User = require('../model/user')
 const signUpRouter = express.Router();
@@ -9,6 +10,7 @@ signUpRouter.route('/')
     .get((req, res, next) => {
         signUp.find()
             .then(data => {
+                console.log(data[0].password)
                 res.send(data)
             })
 
@@ -21,9 +23,6 @@ signUpRouter.route('/')
         let address = req.body.address;
         let email = req.body.email;
         let phoneNo = req.body.phoneNo
-
-
-
 
         User.findOne({ cardNo: cardNo })
             .then((data) => {

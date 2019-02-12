@@ -1,5 +1,7 @@
 const express = require('express');
-const Login = require('../model/Login')
+const bcrypt = require('bcrypt');
+
+const Login = require('../model/signUp')
 const loginRouter = express.Router();
 
 loginRouter.route('/')
@@ -11,16 +13,23 @@ loginRouter.route('/')
 
 
     .post((req, res, next) => {
-        if (req.body.userName === "punya") {
-            Login.find()
-                .then(data => { res.send(data) });
+        let userName = req.body.userName;
+        let password = req.body.password;
 
-        } else {
-            res.status(400);
-            res.end("You are not authorized ");
-            console.log("No matching data");
-        }
+        Login.findOne({ userName: userName })
+            .then(data => {
+                if (data !== null) {
+                    let dbPassword = data.password;
+                    bcrypt.compare(password, dbPassword)
+                        .then((resp) => {
+                            res.send(resp ? "you are logged in" : "your user name or password doesnt match");
+                        });
 
+                } else {
+                    res.status(400);
+                    res.end("your user name or password doesnt match ");
+                }
+            })
 
     })
 
