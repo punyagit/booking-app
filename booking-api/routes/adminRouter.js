@@ -1,5 +1,5 @@
 const express = require('express');
-
+const Login = require('../model/signUp')
 
 
 const User = require('../model/user')
@@ -13,15 +13,38 @@ adminRouter.route('/')
     // })
 
     .get((req, res, next) => {
-        User.find()
-            .then(data => { res.send(data) });
 
+
+        User.find()
+
+            .then(data => {
+                let obj1 = { add: "salm" }
+                data.forEach((da) => {
+
+                    let cardNo = da.cardNo
+                    Login.find({ cardNo })
+                        .then((value) => {
+
+                            if (value.length < 1) {
+                                return Promise.resolve({})
+                            } else {
+                                return Promise.resolve({ name: "punya" })
+                            }
+
+                        }).then((v) => {
+                            obj1 = { ...obj1, ...v }
+                            console.log(obj1)
+                        })
+
+                })
+
+
+            })
     })
 
     .post((req, res, next) => {
         User.create(req.body)
             .then(data => {
-                console.log("user created")
                 res.json(data)
             })
     })
