@@ -7,16 +7,22 @@ const userSchema = mongoose.Schema({
 
 let Users = mongoose.model('User', userSchema);
 
+module.exports = Users;
+
+
+
+
+
 // seeding database -----
 
 // Users.create(
 //     {
 //         cardNo: '4596',
-//         address: '30 eleanor drive glenfield'
+//         address: '20 eleanor drive '
 //     },
 //     {
 //         cardNo: '4096',
-//         address: '28 eleanor drive glenfield'
+//         address: '28 eleanor drive '
 
 //     }
 
@@ -25,14 +31,13 @@ let Users = mongoose.model('User', userSchema);
 // let admin = Users(
 //     {
 //         cardNo: '4596',
-//         address: '30 eleanor drive glenfield'
+//         address: '21 eleanor drive '
 //     },
 //     // {
 //     //     cardNo: '4096',
-//     //     address: '28 eleanor drive glenfield'
+//     //     address: '23 eleanor drive '
 //     // }
 // )
 
 // admin.save();
 
-module.exports = Users;

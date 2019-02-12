@@ -16,7 +16,7 @@ loginRouter.route('/')
         let userName = req.body.userName;
         let password = req.body.password;
 
-        Login.findOne({ userName: userName })
+        Login.findOne({ userName }) // destructuring
             .then(data => {
                 if (data !== null) {
                     let dbPassword = data.password;
