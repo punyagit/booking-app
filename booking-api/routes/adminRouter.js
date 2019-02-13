@@ -13,34 +13,66 @@ adminRouter.route('/')
     // })
 
     .get((req, res, next) => {
+        let count = 0
+        const promise = () => User.find()
+            .then((data) => {
 
-
-        User.find()
-
-            .then(data => {
-                let obj1 = { add: "salm" }
+                return data
+            }).then((data) => {
+                let cardNo;
                 data.forEach((da) => {
-
-                    let cardNo = da.cardNo
-                    Login.find({ cardNo })
-                        .then((value) => {
-
-                            if (value.length < 1) {
-                                return Promise.resolve({})
-                            } else {
-                                return Promise.resolve({ name: "punya" })
-                            }
-
-                        }).then((v) => {
-                            obj1 = { ...obj1, ...v }
-                            console.log(obj1)
-                        })
+                    cardNo = da.cardNo
 
                 })
 
 
             })
+
+        promise().then((dp) => {
+            console.log(dp)
+        })
+
+
+
+
+        // User.find()
+
+        //     .then(data => {
+        //         let dap = 0;
+
+        //         data.forEach((da) => {
+
+        //             let cardNo = da.cardNo
+        //             Login.find({ cardNo })
+        //                 .then((value) => {
+
+        //                     if (value.length < 1) {
+        //                         let dap = 20
+        //                         return dap
+        //                     } else {
+        //                         let _id = value[0]._id
+        //                         let address = value[0].address
+        //                         let userName = value[0].userName
+        //                         let cardNo = value[0].cardNo
+        //                         let email = value[0].email
+        //                         let phoneNo = value[0].phoneNo
+
+        //                         let userData = { _id, cardNo, address, userName, email, phoneNo }
+        //                         let ba = 20
+        //                         //return Promise.resolve(da)
+
+        //                     }
+        //                     console.log(dap)
+
+        //                 })
+        //         })
+
+
+        //     })
+
     })
+
+
 
     .post((req, res, next) => {
         User.create(req.body)
