@@ -7,3 +7,4 @@
 ## **MERN Stack**
 
 - Use NodeJS, EXPRESS, MONGO and various middleware to create a RESTful API
+- bcrypt
