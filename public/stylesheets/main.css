@@ -2,6 +2,11 @@ body {
   background: darkolivegreen;
 }
 
+td {
+  color: black;
+  padding: 10px;
+}
+
 .main-container {
   width: 70%;
   margin: auto;
@@ -12,6 +17,10 @@ body {
   min-height: 400px;
   margin-top: -60px;
   text-align: center;
+}
+
+.button {
+  color: black;
 }
 
 .jumbotron {

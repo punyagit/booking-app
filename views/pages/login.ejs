@@ -8,6 +8,24 @@
     <% include ../partials/nav.ejs %>
     <div class="main-container">
       Login
+      <form name="form1" method="POST" action="/login">
+        <table>
+          <tr>
+            <td>Admin Id:</td>
+            <td><input type="text" name="id" /></td>
+          </tr>
+          <tr>
+            <td>Password</td>
+            <td><input type="text" name="password" /></td>
+          </tr>
+          <tr>
+            <td class="button" colspan="2">
+              <input type="submit" value="Submit" />
+            </td>
+          </tr>
+        </table>
+      </form>
+      <%if(typeof message !== "undefined"){ %> <%= message%> <%}%>
     </div>
   </body>
 </html>
