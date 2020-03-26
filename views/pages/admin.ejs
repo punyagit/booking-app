@@ -8,6 +8,19 @@
     <% include ../partials/nav.ejs %>
     <div class="main-container">
       Admin Board
+      <hr />
+      <form name="form1" method="POST" action="/login/admin">
+        <table>
+          <tr>
+            <td>Member Name</td>
+            <td><input type="text" name="member" /></td>
+            <td class="button" colspan="2">
+              <input type="submit" value="Submit" />
+            </td>
+          </tr>
+        </table>
+      </form>
+      <%if(typeof message !== "undefined"){ %> <%= message%> <%}%>
     </div>
   </body>
 </html>
