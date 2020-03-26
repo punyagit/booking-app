@@ -2,7 +2,7 @@ const express = require('express');
 const adminRouter = express.Router();
 let fs = require('fs');
 let data = JSON.parse(fs.readFileSync('./routes/mynewfile3.json', 'utf8'));
-console.log(data);
+
 adminRouter.get('/', (req, res) => res.render('pages/login'));
 
 adminRouter.post('/', (req, res) => {
@@ -11,7 +11,7 @@ adminRouter.post('/', (req, res) => {
   } else if (req.body.id !== 'punya' || req.body.password !== 'nepal') {
     res.render('pages/login', { message: 'Wrong id Or Password' });
   }
-  res.render('pages/admin');
+  res.render('pages/admin', { data: data });
 });
 
 adminRouter.post('/admin', (req, res) => {

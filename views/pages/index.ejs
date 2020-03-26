@@ -7,7 +7,21 @@
   <body>
     <% include ../partials/nav.ejs %>
     <div class="main-container">
-      Player
-    </div>
+      <h3>Player</h3>
+      <table>
+        <tr>
+          <td>Player Name</td>
+          <td>Total Match</td>
+          <td>Win</td>
+        </tr>
+      <% for(let i=0; i < data.length; i++) { %>
+        <tr>
+          <td><%= data[i].name %></td>
+          <td><%= data[i].matchPlayed %></td>
+          <td><%= data[i].win %></td>
+        </tr>
+     <% } %>
+     </table>
+      
   </body>
 </html>
