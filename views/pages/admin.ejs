@@ -7,21 +7,18 @@
   <body>
     <% include ../partials/nav.ejs %>
     <div class="main-container">
-      Admin Board
-      <hr />
       <form name="form1" method="POST" action="/login/admin">
         <table>
           <tr>
-            <td>Member Name</td>
-            <td><input type="text" name="member" /></td>
+            <td>Admin Board</td>
             <td class="button" colspan="2">
-              <input type="submit" value="Submit" />
+              <input type="submit" value="Add Member" />
             </td>
           </tr>
         </table>
       </form>
-      <%if(typeof message !== "undefined"){ %> <%= message%> <%}%>
       <hr />
+
       <table>
         <tr>
           <td>Player Name</td>
@@ -33,9 +30,43 @@
           <td><%= data[i].name %></td>
           <td><%= data[i].matchPlayed %></td>
           <td><%= data[i].win %></td>
+          <td>
+            <% let val = JSON.stringify(data) %>
+            <input
+              type="submit"
+              value="Win"
+              onclick="clickMe(<%=val%>,<%=i%>,'win')"
+            />
+          </td>
+          <td>
+            <input
+              type="submit"
+              value="Loose"
+              onclick="clickMe(<%=val%>,<%=i%>,'loose')"
+            />
+          </td>
         </tr>
         <% } %>
       </table>
     </div>
+    <script>
+      function clickMe(data, i, type) {
+        if (type === 'win') {
+          data[i].win = data[i].win + 1;
+          data[i].matchPlayed += 1;
+        } else if (type === 'loose') {
+          data[i].matchPlayed += 1;
+        }
+
+        fetch('/login/admin/addMember/1', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        }).then(location.reload());
+      }
+    </script>
   </body>
 </html>
