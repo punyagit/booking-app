@@ -16,7 +16,9 @@ adminRouter.post('/', (req, res) => {
     res.render('pages/admin', { data: data });
   }
 });
-
+adminRouter.get('/admin', (req, res) => {
+  res.render('pages/addMember');
+});
 adminRouter.post('/admin', (req, res) => {
   res.render('pages/addMember');
 });

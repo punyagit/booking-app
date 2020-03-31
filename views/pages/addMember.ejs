@@ -2,6 +2,11 @@
 <html>
   <head>
     <% include ../partials/header.ejs %>
+    <script>
+      if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+      }
+    </script>
   </head>
 
   <body>
@@ -14,7 +19,7 @@
         name="form1"
         method="POST"
         action="/login/admin/addMember"
-        id="formAdd"
+        onsubmit="window.location.reload()"
       >
         <table>
           <tr>
