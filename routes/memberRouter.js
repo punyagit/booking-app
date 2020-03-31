@@ -22,4 +22,15 @@ memberRouter.post('/addMember', (req, res) => {
   }
 });
 
+memberRouter.post('/addMember/1', (req, res) => {
+  let data = req.body;
+  fs.writeFile('./routes/mynewfile3.json', JSON.stringify(data), (err) => {
+    if (err) throw err;
+    console.log('Saved!');
+    res.send('ok');
+  });
+
+  res.end();
+});
+
 module.exports = memberRouter;
