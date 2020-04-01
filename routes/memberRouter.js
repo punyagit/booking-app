@@ -16,8 +16,9 @@ memberRouter.post('/addMember', (req, res) => {
     data.push({ name: req.body.member, matchPlayed: 0, win: 0 });
     fs.writeFile('./routes/mynewfile3.json', JSON.stringify(data), (err) => {
       if (err) throw err;
-      console.log('Saved!');
-      res.render('pages/admin', { message: 'Member added', data: data });
+      res.render('pages/addMember', {
+        message: 'Member Added',
+      });
     });
   }
 });
@@ -27,10 +28,9 @@ memberRouter.post('/addMember/1', (req, res) => {
   fs.writeFile('./routes/mynewfile3.json', JSON.stringify(data), (err) => {
     if (err) throw err;
     console.log('Saved!');
-    res.send('ok');
   });
 
-  res.end();
+  res.redirect('/login/adminPage');
 });
 
 module.exports = memberRouter;

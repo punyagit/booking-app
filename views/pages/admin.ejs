@@ -6,22 +6,25 @@
       if (window.history.replaceState) {
         window.history.replaceState(null, null, window.location.href);
       }
+      // setTimeout(function() {
+      //   // after 2 seconds
+      //   window.location.reload();
+      // }, 2000);
     </script>
   </head>
 
   <body>
     <% include ../partials/nav.ejs %>
     <div class="main-container">
-      <form name="form1" method="POST" action="/login/admin">
-        <table>
-          <tr>
-            <td>Admin Board</td>
-            <td class="button" colspan="2">
-              <input type="submit" value="Add Member" />
-            </td>
-          </tr>
-        </table>
-      </form>
+      <!-- <form name="form1" method="POST" action="/login/admin"> -->
+      <table>
+        <tr>
+          <td><a href="">Admin Board</a></td>
+          <td><a href="/login/admin">Add Member</a></td>
+        </tr>
+      </table>
+
+      <!-- </form> -->
       <hr />
 
       <table>
@@ -74,8 +77,8 @@
         }).then((data) => {
           if (data.status === 200) {
             setTimeout(function() {
-              window.location.reload();
-            }, 300);
+              window.location.replace(data.url);
+            }, 400);
           }
         });
       }
