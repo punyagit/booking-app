@@ -29,6 +29,7 @@
           <td>Total Match</td>
           <td>Win</td>
         </tr>
+
         <% for(let i=0; i < data.length; i++) { %>
         <tr>
           <td><%= data[i].name %></td>
@@ -70,6 +71,12 @@
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(data),
+        }).then((data) => {
+          if (data.status === 200) {
+            setTimeout(function() {
+              window.location.reload();
+            }, 250);
+          }
         });
       }
     </script>
