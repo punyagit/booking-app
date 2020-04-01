@@ -3,7 +3,6 @@ const path = require('path');
 const PORT = process.env.PORT || 5000;
 const bodyParser = require('body-parser');
 const adminRouter = require('./routes/adminRouter');
-const memberRouter = require('./routes/memberRouter');
 
 let fs = require('fs');
 let data = JSON.parse(fs.readFileSync('./routes/mynewfile3.json', 'utf8'));
@@ -17,6 +16,5 @@ express()
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index', { data: data }))
   .use('/login', adminRouter)
-  .use('/login/admin', memberRouter)
 
   .listen(PORT, () => console.log(`Listening on ${PORT}`));

@@ -6,10 +6,6 @@
       if (window.history.replaceState) {
         window.history.replaceState(null, null, window.location.href);
       }
-      // setTimeout(function() {
-      //   // after 2 seconds
-      //   window.location.reload();
-      // }, 2000);
     </script>
   </head>
 
@@ -67,19 +63,13 @@
           data[i].matchPlayed += 1;
         }
 
-        fetch('/login/admin/addMember/1', {
+        fetch('/login/adminPage', {
           method: 'POST',
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(data),
-        }).then((data) => {
-          if (data.status === 200) {
-            setTimeout(function() {
-              window.location.replace(data.url);
-            }, 400);
-          }
         });
       }
     </script>

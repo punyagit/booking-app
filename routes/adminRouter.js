@@ -6,8 +6,12 @@ let data = JSON.parse(fs.readFileSync('./routes/mynewfile3.json', 'utf8'));
 adminRouter.get('/', (req, res) => res.render('pages/login'));
 
 adminRouter.get('/adminPage', (req, res) =>
-  res.render('pages/admin', { data: data }),
+  res.render('pages/admin', { data: data, message: 'ok' }),
 );
+
+adminRouter.get('/admin', (req, res) => {
+  res.render('pages/addMember');
+});
 
 adminRouter.post('/', (req, res) => {
   if (req.body.id === '' || req.body.password === '') {
@@ -20,11 +24,31 @@ adminRouter.post('/', (req, res) => {
     res.redirect('/login/adminPage');
   }
 });
-adminRouter.get('/admin', (req, res) => {
-  res.render('pages/addMember');
-});
+
 adminRouter.post('/admin', (req, res) => {
-  res.render('pages/addMember');
+  if (req.body.member === '') {
+    res.render('pages/addMember', {
+      message: 'Please Enter Member Name ',
+    });
+  } else {
+    data.push({ name: req.body.member, matchPlayed: 0, win: 0 });
+    fs.writeFile('./routes/mynewfile3.json', JSON.stringify(data), (err) => {
+      if (err) throw err;
+      res.render('pages/addMember', {
+        message: 'Member Added',
+      });
+    });
+  }
+});
+
+adminRouter.post('/adminPage', (req, res) => {
+  let data = req.body;
+  fs.writeFileSync('./routes/mynewfile3.json', JSON.stringify(data));
+  // fs.writeFile('./routes/mynewfile3.json', JSON.stringify(data), (err) => {
+  //   if (err) throw err;
+  //   console.log('Saved!');
+  // });
+  res.render('pages/admin', { data: data });
 });
 
 module.exports = adminRouter;
